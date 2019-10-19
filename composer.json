@@ -1,0 +1,19 @@
+{
+    "name": "onenook/helper",
+    "description": "The PHP Helper Package",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "onenook",
+            "email": "onenook@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "nook\\": "src/"
+        }
+    }
+}
