@@ -60,4 +60,21 @@ class Crypto
             return $keyC . str_replace('=', '', base64_encode($result));
         }
     }
+    
+    public function set()
+    {
+        $username = 'admin';
+        $password = 'e10adc3949ba59abbe56e057f20f883e';
+        $token_expiry = config('setting.token_expiry');
+        $token = auth_code($username . '_' . $password, 'ENCODE', $token_expiry);
+
+        halt($token);
+    }
+
+    public function get()
+    {
+        $token = '8ef058AC9Kxr/R0j8ruuUUPkoZoxdebXkakL+w53xvC8E+krj0moE/UvEdScNhhuEBq0LT5CN2P8oNxYGMHqO5huXw';
+        list($username, $password) = explode('_', auth_code($token, 'DECODE'));
+        halt($username, $password);
+    }
 }
