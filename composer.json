@@ -11,8 +11,6 @@
     "require": {
         "ext-json": "*",
         "ext-curl": "*",
-        "ext-ctype": "*",
-        "ext-mbstring": "*",
         "php": ">=7.0.0"
     },
     "autoload": {
