@@ -37,14 +37,14 @@ class Base
     }
 
     /**
-     * 封装接口返回数据
+     * 返回数据 - Json
      * @param int    $code
      * @param string $msg
      * @param array  $data
      * @param int    $count
-     * @return false|string
-        */
-    public static function json(int $code = 0, string $msg = '', array $data = [], int $count = 0): string
+     * @return string
+     */
+    public static function return_json(int $code = 0, string $msg = '', array $data = [], int $count = 0): string
     {
         $result = [
             'code'  => $code,
@@ -55,5 +55,26 @@ class Base
         ];
 
         return json_encode($result, 256);
+    }
+
+    /**
+     * 返回数据 - Array
+     * @param int    $code
+     * @param string $msg
+     * @param array  $data
+     * @param int    $count
+     * @return array
+     */
+    public static function return_array(int $code = 0, string $msg = '', array $data = [], int $count = 0): array
+    {
+        $result = [
+            'code'  => $code,
+            'msg'   => $msg,
+            'data'  => $data,
+            'count' => $count,
+            'time'  => time(),
+        ];
+
+        return $result;
     }
 }

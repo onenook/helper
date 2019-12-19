@@ -1,16 +1,31 @@
 <?php
 
-namespace nook\helper;
+namespace nook\number;
 
 class Math
 {
+    /**
+     * 格式化文件大小单位
+     * @param int    $size
+     * @param string $delimiter
+     * @return string
+     */
+    public static function format_size(int $size, string $delimiter = ''): string
+    {
+        $units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
+        for ($i = 0; $size >= 1024 && $i < 5; $i++) {
+            $size /= 1024;
+        }
+        return round($size, 2) . $delimiter . $units[$i];
+    }
+
     /**
      * 把数值转化成倍数值
      * @param float $number
      * @param float $times
      * @return float
      */
-    public function numberTimes(float $number, float $times): float
+    public static function numberTimes(float $number, float $times): float
     {
         if (empty($number)) return 0;
         $number = floor($number / $times) * $times;
@@ -26,7 +41,7 @@ class Math
      * @param int $decimal
      * @return string
      */
-    public function getLong($longitude1, $latitude1, $longitude2, $latitude2, $decimal = 2): string
+    public static function getLong($longitude1, $latitude1, $longitude2, $latitude2, $decimal = 2): string
     {
         $EARTH_RADIUS = 6370.996; // 地球半径系数
         $PI = 3.1415926;

@@ -1,17 +1,17 @@
 <?php
 
-namespace nook\helper;
+namespace nook\time;
 
-class Time
+class Date
 {
     /**
      * 获取时间区间
-     * 此函数不可以超过相应的进制数 -> PS: ①个月最多31天，就不要填写大于31的数值
-     * 参数介绍：[1-2-3-4-5-6] -> [①年②月③天④小时⑤分钟⑥秒]
+     *      此函数不可以超过相应的进制数 -> PS: ①个月最多31天，就不要填写大于31的数值
+     *      参数介绍：[1-2-3-4-5-6] -> [①年②月③天④小时⑤分钟⑥秒]
      * @param string $param
-     * @return false|string
+     * @return string
      */
-    public function getTime($param = '0-0-0-0-0-0'): string
+    public static function getTime(string $param = '0-0-0-0-0-0'): string
     {
         // 天：不固定，动态计算；
         // 月：1-12；时分秒：0-23/59；全部先 +1，月份再 +1
@@ -70,9 +70,9 @@ class Time
     /**
      * 判断时间过去了多久
      * @param string $time
-     * @return false|string
+     * @return string
      */
-    public function pastTime($time = '2019-12-12'): string
+    public static function pastTime(string $time = '2019-12-12'): string
     {
         $time = is_string($time) ? strtotime($time) : intval($time);
         $time = false === $time || $time > time() ? time() : $time;

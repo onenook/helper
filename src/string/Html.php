@@ -1,6 +1,6 @@
 <?php
 
-namespace nook\helper;
+namespace nook\string;
 
 class Html
 {
@@ -8,7 +8,7 @@ class Html
      * getJquery
      * @return array
      */
-    public function getJquery(): array
+    public static function getJquery(): array
     {
         $array = [
             '1.12.4' => 'https://code.jquery.com/jquery-1.12.4.min.js',
@@ -23,7 +23,7 @@ class Html
      * getJavaScript
      * @return array
      */
-    public function getJavaScript(): array
+    public static function getJavaScript(): array
     {
         $array = [
             'layui_css' => '//res.layui.com/layui/dist/css/layui.css',

@@ -1,6 +1,6 @@
 <?php
 
-namespace nook\helper;
+namespace nook\string;
 
 class Crypto
 {
@@ -12,7 +12,7 @@ class Crypto
      * @param string $key
      * @return string
      */
-    public function authCode(string $string, string $operation = 'decode', int $expiry = 0, string $key = ''): string
+    public static function authCode(string $string, string $operation = 'decode', int $expiry = 0, string $key = ''): string
     {
         $cKey_length = 4;
         $key = md5($key <> '' ? $key : 'setting.auth_key');
@@ -59,5 +59,25 @@ class Crypto
         } else {
             return $keyC . str_replace('=', '', base64_encode($result));
         }
+    }
+
+    // ------------------------------ 示例代码 ------------------------------
+
+    public static function set()
+    {
+        $username = 'admin';
+        $password = 'e10adc3949ba59abbe56e057f20f883e';
+        $token_expiry = config('setting.token_expiry') ?: '';
+        $token = self::authCode($username . '_' . $password, 'encode', 3600 * 24, $token_expiry);
+
+        return $token;
+    }
+
+    public static function get()
+    {
+        $token = 'f40dLiJQ12Yf1uEraJ/F+GEJk4EIYbGh6HUa7Nnsdm4HYmczBaZMlIBwnSUQ9LLBDjXdRVei0MpKMwILbmLzQoYgVw';
+        list($username, $password) = explode('_', self::authCode($token, 'decode'));
+
+        return [$username, $password];
     }
 }
